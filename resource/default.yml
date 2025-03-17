@@ -4,7 +4,7 @@ folder: '../audio/' # 音效目錄
 
 individual_path: false # 個別指定音效
 
-ALERT: ../audio/ALERT.wav' # 地震速報 預估震度 > 5-
+ALERT: '../audio/ALERT.wav' # 地震速報 預估震度 > 5-
 EEW: '../audio/EEW.wav' # 地震速報
 INTENSITY: '../audio/INTENSITY.wav' # 震度速報
 PGA1: '../audio/PGA1.wav' # PGA > 8gal
