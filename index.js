@@ -4,7 +4,7 @@ class Plugin {
   static instance = null;
 
   #ctx;
-  #config
+  #config;
 
   constructor(ctx) {
     if (Plugin.instance) return Plugin.instance;
@@ -12,7 +12,7 @@ class Plugin {
     this.#ctx = ctx;
     this.#config = null;
     this.logger = null;
-    this.getConfig = ()=> void 0;
+    this.getConfig = () => void 0;
 
     Plugin.instance = this;
   }
@@ -23,25 +23,46 @@ class Plugin {
   }
 
   onLoad() {
-    const { TREM, info , utils} = this.#ctx;
+    const { TREM, info, utils } = this.#ctx;
 
-    const defaultDir = utils.path.join(info.pluginDir,"./change-audio/resource/default.yml");
-    const configDir = utils.path.join(info.pluginDir, "./change-audio/config.yml");
-    this.#config = new config("change-audio", this.logger, utils.fs, defaultDir, configDir);
+    const defaultDir = utils.path.join(
+      info.pluginDir,
+      "./change-audio/resource/default.yml"
+    );
+    const configDir = utils.path.join(
+      info.pluginDir,
+      "./change-audio/config.yml"
+    );
+    this.#config = new config(
+      "change-audio",
+      this.logger,
+      utils.fs,
+      defaultDir,
+      configDir
+    );
     this.getConfig = this.#config.getConfig;
+    this.folder = this.#config.getConfig().folder;
 
-    TREM.constant.AUDIO.ALERT = new Audio(this.#config.getConfig().ALERT);
-    TREM.constant.AUDIO.EEW = new Audio(this.#config.getConfig().EEW);
-    TREM.constant.AUDIO.INTENSITY = new Audio(this.#config.getConfig().INTENSITY);
-    TREM.constant.AUDIO.PGA1 = new Audio(this.#config.getConfig().PGA1);
-    TREM.constant.AUDIO.PGA2 = new Audio(this.#config.getConfig().PGA2);
-    TREM.constant.AUDIO.REPORT = new Audio(this.#config.getConfig().REPORT);
-    TREM.constant.AUDIO.SHINDO0 = new Audio(this.#config.getConfig().SHINDO0);
-    TREM.constant.AUDIO.SHINDO1 = new Audio(this.#config.getConfig().SHINDO1);
-    TREM.constant.AUDIO.SHINDO2 = new Audio(this.#config.getConfig().SHINDO2);
-    TREM.constant.AUDIO.TSUNAMI = new Audio(this.#config.getConfig().TSUNAMI);
-    TREM.constant.AUDIO.UPDATE = new Audio(this.#config.getConfig().UPDATE);
-    TREM.constant.AUDIO.CANCEL = new Audio(this.#config.getConfig().CANCEL);
+    const audioKeys = [
+      "ALERT",
+      "EEW",
+      "INTENSITY",
+      "PGA1",
+      "PGA2",
+      "REPORT",
+      "SHINDO0",
+      "SHINDO1",
+      "SHINDO2",
+      "TSUNAMI",
+      "UPDATE",
+      "CANCEL",
+    ];
+
+    audioKeys.forEach((key) => {
+      TREM.constant.AUDIO[key] = this.#config.getConfig().individual_path
+        ? new Audio(this.#config.getConfig()[key])
+        : new Audio(`${this.folder}${key}.wav`);
+    });
   }
 }
 
