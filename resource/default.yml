@@ -1,0 +1,13 @@
+ver: 1
+ALERT: '../audio/ALERT.wav'
+EEW: '../audio/EEW.wav' # 地震速報
+INTENSITY: '../audio/INTENSITY.wav' # 震度速報
+PGA1: '../audio/PGA1.wav' # PGA > 8gal
+PGA2: '../audio/PGA2.wav' # PGA > 200gal
+REPORT: '../audio/REPORT.wav' # 地震報告
+SHINDO0: '../audio/SHINDO0.wav' # 震度 0
+SHINDO1: '../audio/SHINDO1.wav' # 震度 2
+SHINDO2: '../audio/SHINDO2.wav' # 震度 4
+TSUNAMI: '../audio/TSUNAMI.wav' # 海嘯警報
+UPDATE: '../audio/UPDATE.wav' # EEW 更新
+CANCEL: '../audio/CANCEL.wav' # EEW 取消
