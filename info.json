@@ -1,5 +1,6 @@
 {
-    "version": "1.0.0",
+  "name": "change-audio",
+  "version": "1.0.0",
     "description": {
       "zh_tw": "自訂提示音效"
     },
@@ -7,7 +8,8 @@
       "Yoyo0901"
     ],
     "dependencies": {
-      "trem": ">=3.0.0"
+      "trem": ">=3.0.0",
+      "config": ">=1.0.4"
     },
     "resources": [
       "AGPL-3.0"
